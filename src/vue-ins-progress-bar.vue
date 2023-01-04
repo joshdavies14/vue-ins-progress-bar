@@ -1,38 +1,37 @@
 <template>
-  <div class="ins-progress" :style="style"></div>
+  <div
+  class="ins-progress"
+  :class="[ins-progress-height, ins-progress-position, ins-progress-opacity, ins-progress-display]"
+  >
+  </div>
 </template>
 <script>
 const inBrowser = typeof window !== 'undefined'
 export default {
     name: 'VueInsProgressBar',
     computed: {
-        style() {
-            const progress = this.progress
-            const options = progress.options
-            const isShow = !!options.show
-            const __isDisplay = !!options.__isDisplay
-            const style = {
-                'opacity': isShow ? 1 : 0,
-                'display': __isDisplay ? 'block' : 'none',
-                'position': options.position,
-                'height': options.height
-            }
-            return style
+        options() {
+            return this.progress.options
         },
         progress() {
             if (inBrowser) {
                 return window.INSPBEventBus.INSPB
             }
             else {
-
-                // The vue-ins-progress-bar can work in browser only!
-                console.warn('The vue-ins-progress-bar can work in browser only!');
-
                 return {
                     options: {}
                 }
             }
         }
+    },
+    mounted() {
+        this.$nextTick(() => {
+            const stylesheet = document.styleSheets[0];
+            stylesheet.insertRule(".ins-progress-height { height: " + this.options.height + " }", 0);
+            stylesheet.insertRule(".ins-progress-position { position: " + this.options.position + " }", 0);
+            stylesheet.insertRule(".ins-progress-display { display: " + this.options.__isDisplay ? 'block' : 'none' + " }", 0);
+            stylesheet.insertRule(".ins-progress-opacity { opacity: " + !!this.options.show ? 1 : 0 + " }", 0);
+        })
     }
 }
 
