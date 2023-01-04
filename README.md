@@ -69,6 +69,11 @@ export default {
 }
 </script>
 ```
+
+Add to your main CSS file e.g. `app.css`:
+```css
+@import 'vue-ins-progress-bar/dist/styles.css';
+```
    
 ## APIs   
    
