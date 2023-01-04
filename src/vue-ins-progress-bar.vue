@@ -1,39 +1,38 @@
 <template>
-  <div
-  class="ins-progress"
-  :class="[ins-progress-height, ins-progress-position, ins-progress-opacity, ins-progress-display]"
-  >
-  </div>
+    <div
+        class="ins-progress"
+        :class="[ins-progress-height, ins-progress-position, ins-progress-opacity, ins-progress-display]"
+    >
+    </div>
 </template>
 <script>
-const inBrowser = typeof window !== 'undefined'
+const inBrowser = typeof window !== 'undefined';
 export default {
     name: 'VueInsProgressBar',
     computed: {
         options() {
-            return this.progress.options
+            return this.progress.options;
         },
         progress() {
             if (inBrowser) {
-                return window.INSPBEventBus.INSPB
+                return window.INSPBEventBus.INSPB;
             }
-            else {
+
                 return {
-                    options: {}
-                }
-            }
-        }
+                    options: {},
+                };
+        },
     },
     mounted() {
         this.$nextTick(() => {
             const stylesheet = document.styleSheets[0];
-            stylesheet.insertRule(".ins-progress-height { height: " + this.options.height + " }", 0);
-            stylesheet.insertRule(".ins-progress-position { position: " + this.options.position + " }", 0);
-            stylesheet.insertRule(".ins-progress-display { display: " + this.options.__isDisplay ? 'block' : 'none' + " }", 0);
-            stylesheet.insertRule(".ins-progress-opacity { opacity: " + !!this.options.show ? 1 : 0 + " }", 0);
-        })
-    }
-}
+            stylesheet.insertRule(`.ins-progress-height { height: ${this.options.height} }`, 0);
+            stylesheet.insertRule(`.ins-progress-position { position: ${this.options.position} }`, 0);
+            stylesheet.insertRule(`.ins-progress-display { display: ${this.options.__isDisplay ? 'block' : 'none'} }`, 0);
+            stylesheet.insertRule(`.ins-progress-opacity { opacity: ${this.options.show ? 1 : 0} }`, 0);
+        });
+    },
+};
 
 </script>
 <style scoped>
