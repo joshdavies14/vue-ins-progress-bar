@@ -1,0 +1,79 @@
+{
+    "extends": [
+      "airbnb-base",
+      "plugin:vue/recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": "12",
+      "parser": "@babel/eslint-parser",
+      "requireConfigFile": false
+    },
+    "env": {
+      "browser": true,
+      "es6": true,
+      "jquery": true
+    },
+    "rules": {
+      "eol-last": [
+        "error",
+        "always"
+      ],
+      "no-underscore-dangle": "off",
+      "indent": [
+        "error",
+        4,
+        {
+          "SwitchCase": 1
+        }
+      ],
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "max-len": ["off"],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "no-plusplus": [
+        "error",
+        {
+          "allowForLoopAfterthoughts": true
+        }
+      ],
+      "vue/html-indent": ["error", 4],
+      "vue/max-attributes-per-line": ["off"],
+      "vue/multi-word-component-names": ["off"],
+      "vue/no-v-html": ["off"],
+      "no-restricted-syntax": ["off"],
+      "import/extensions": ["off"],
+      "vue/html-self-closing": ["error", {
+        "html": {
+          "void": "never",
+          "normal": "never",
+          "component": "never"
+        },
+        "svg": "never",
+        "math": "never"
+      }]
+    },
+    "overrides": [
+      {
+        "files": ["*.vue"],
+        "rules": {
+          "indent": "off"
+        }
+      }
+    ],
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [".js",".jsx",".vue", ".ts"]
+        }
+      }
+    }
+  }
