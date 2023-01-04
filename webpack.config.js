@@ -1,7 +1,4 @@
 const path = require('path')
-const vueLoaderConfig = require('./vue-loader.conf')
-const isProduction = process.env.NODE_ENV === 'production'
-
 const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
@@ -17,18 +14,22 @@ module.exports = {
             {
                 test: /\.vue$/,
                 loader: 'vue-loader',
-                options: vueLoaderConfig
             },
             { 
                 test: /\.js$/, 
                 exclude: /node_modules/, 
                 loader: 'babel-loader',
-                options: {
-                    "plugins": ["transform-object-assign"]
-                }
             },
             {   test: /\.css$/,
-                loader: 'style-loader!css-loader'
+                use: [
+                    {
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: { importLoaders: 1 },
+                    }
+                ]
             }
         ]
     },
